@@ -8,7 +8,7 @@ def part_1():
 
     passed_game_sum = 0
 
-    def process_rounds(rs):
+    def process_game(rs):
         for r in rs:
             for c in r.strip().split(','):
                 pick = re.findall(r'^([0-9]+) ([a-z]+)', c.strip())
@@ -27,7 +27,7 @@ def part_1():
             parsed_line = re.findall(r'^Game ([0-9]+): (.+)$', line)
             rounds = parsed_line[0][1].split(';')
 
-            if (game := process_rounds(rounds))[0] == 'passed':
+            if (game := process_game(rounds))[0] == 'passed':
                 passed_game_sum += int(game[1])
 
         print(passed_game_sum)
@@ -64,10 +64,10 @@ def part_2():
             rounds = parsed_line[0][1].split(';')
 
             set_power += process_game(rounds)
-            print(f'set power: {set_power}\n')
 
         print(set_power)
 
 
 if __name__ == '__main__':
+    part_1()
     part_2()
